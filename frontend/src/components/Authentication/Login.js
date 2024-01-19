@@ -19,6 +19,7 @@ function Login() {
   const toast = useToast();
   const navigate = useNavigate();
   const [show, setShow] = useState();
+  const apiUrl = process.env.REACT_APP_BASE_URL;
 
   const handleShowPassword = () => {
     setShow(!show);
@@ -45,7 +46,7 @@ function Login() {
         },
       };
 
-      const response = await fetch("http://localhost:5000/api/user/login", {
+      const response = await fetch(`${apiUrl}/api/user/login`, {
         method: "POST",
         headers: config.headers,
         body: JSON.stringify({

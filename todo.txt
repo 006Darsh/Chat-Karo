@@ -1,0 +1,13 @@
+-->add the date on start on the chat of a new date
+-->add new admin(check all the admin id comparisions and make a array check)
+-->click on avatar in the chat page os a user on the left of a chat message should open the profile
+-->add photo for group dp
+-->edit personal dp
+-->email verification
+-->password regulations
+-->Add media sending function
+
+
+-->Advanced
+-->add tick marks on sent,received,and seen
+-->add delete message
