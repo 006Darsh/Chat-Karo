@@ -13,7 +13,13 @@ const path = require("path");
 const app = express();
 connectDB();
 app.use(express.json());
-
+app.use((req, res, next) => {
+  if (req.originalUrl.includes("/undefined")) {
+    req.url = req.originalUrl.replace("/undefined", "");
+    req.originalUrl = req.url;
+  }
+  next();
+});
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -21,9 +27,6 @@ app.use(
   })
 );
 app.use(logger("dev"));
-app.get("/", (req, res) => {
-  res.send("Api called and is running");
-});
 
 app.use("/api/user", userRoutes);
 app.use("/api/chat", chatRoutes);
@@ -33,9 +36,9 @@ app.use("/api/message", messageRoutes);
 const __dirname1 = path.resolve();
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname1, "/frontend/build")));
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname1, "frontend","build","index.html"));
-  })
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"));
+  });
 } else {
   app.get("/", (req, res) => {
     res.send("API is running..");
@@ -43,6 +46,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //---------------deployment-------------------
+
 app.use(notFound);
 app.use(errorHandler);
 
