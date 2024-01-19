@@ -26,7 +26,6 @@ const MyChats = ({ fetchAgain }) => {
           headers: config.headers,
         });
         const data = await response.json();
-        console.log(data);
         setChats(data);
         setLoading(false);
       } catch (error) {

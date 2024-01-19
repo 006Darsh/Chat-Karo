@@ -28,7 +28,8 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
   const [typing, setTyping] = useState(false);
   const [istyping, setIsTyping] = useState(false);
   const toast = useToast();
-  const { user, selectedChat, setSelectedChat } = ChatState();
+  const { user, selectedChat, setSelectedChat, notification, setNotification } =
+    ChatState();
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
   const defaultOptions = {
@@ -59,7 +60,6 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
           }),
         });
         const data = await response.json();
-        console.log(data);
         socket.emit("new message", data);
         setMessages([...messages, data]);
       } catch (error) {
@@ -84,7 +84,6 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
         },
       };
       setLoading(true);
-      console.log(selectedChat);
       const users = await fetch(
         `${apiUrl}/api/message/${selectedChat._id}`,
         config
@@ -117,16 +116,18 @@ function SingleChat({ fetchAgain, setFetchAgain }) {
     selectedChatCompare = selectedChat;
   }, [selectedChat]);
 
+  console.log(notification, "-------------");
+
   useEffect(() => {
     socket.on("message recieved", (newMessageRecieved) => {
       if (
         !selectedChatCompare ||
         selectedChatCompare._id !== newMessageRecieved.chat._id
       ) {
-        // if (!notification.includes(newMessageRecieved)) {
-        //   setNotification([newMessageRecieved, ...notification]);
-        //   setFetchAgain(!fetchAgain);
-        // }
+        if (!notification.includes(newMessageRecieved)) {
+          setNotification([newMessageRecieved, ...notification]);
+          setFetchAgain(!fetchAgain);
+        }
       } else {
         setMessages([...messages, newMessageRecieved]);
       }
