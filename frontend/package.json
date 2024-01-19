@@ -1,8 +1,9 @@
 {
-  "name": "frontend1",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.6.1",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
@@ -13,12 +14,16 @@
     "cros": "^1.0.1",
     "framer-motion": "^10.12.10",
     "http-proxy-middleware": "^2.0.6",
+    "jwt-decode": "^4.0.0",
     "mongodb": "^5.5.0",
     "proxy": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-lottie": "^1.2.4",
     "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",
+    "react-scrollable-feed": "^2.0.1",
+    "socket.io-client": "^4.7.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
