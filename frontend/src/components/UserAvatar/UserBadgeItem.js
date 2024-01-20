@@ -19,7 +19,7 @@ const UserBadgeItem = ({ user, handleFunction, admin, updategroup }) => {
         <>
           {admin ? admin._id === user._id && <span> (Admin)</span> : <></>}
           {admin ? (
-            admin._id === user._id && (
+            admin._id !== user._id && (
               <CloseIcon pl={1} onClick={handleFunction} />
             )
           ) : (
