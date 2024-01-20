@@ -18,6 +18,10 @@ app.use((req, res, next) => {
     req.url = req.originalUrl.replace("/undefined", "");
     req.originalUrl = req.url;
   }
+  if (req.originalUrl.includes("//")) {
+    req.url = req.originalUrl.replace("//", "/");
+    req.originalUrl = req.url;
+  }
   next();
 });
 app.use(

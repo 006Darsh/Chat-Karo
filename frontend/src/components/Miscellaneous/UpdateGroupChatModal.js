@@ -47,10 +47,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
         },
       };
 
-      const users = await fetch(
-        `${apiUrl}/api/user?search=${search}`,
-        config
-      );
+      const users = await fetch(`${apiUrl}/api/user?search=${search}`, config);
       const data = await users.json();
       setLoading(false);
       setSearchResult(data.data);
@@ -173,17 +170,14 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const response = await fetch(
-        `${apiUrl}/api/chat/groupremove`,
-        {
-          method: "PUT",
-          headers: config.headers,
-          body: JSON.stringify({
-            chatId: selectedChat._id,
-            userId: user1._id,
-          }),
-        }
-      );
+      const response = await fetch(`${apiUrl}/api/chat/groupremove`, {
+        method: "PUT",
+        headers: config.headers,
+        body: JSON.stringify({
+          chatId: selectedChat._id,
+          userId: user1._id,
+        }),
+      });
       const data = await response.json();
       user1._id === user._id ? setSelectedChat() : setSelectedChat(data);
       setFetchAgain(!fetchAgain);
@@ -232,6 +226,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
                   user={u}
                   admin={selectedChat.groupAdmin}
                   handleFunction={() => handleRemove(u)}
+                  updategroup={true}
                 />
               ))}
             </Box>

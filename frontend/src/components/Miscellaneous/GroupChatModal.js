@@ -44,10 +44,7 @@ const GroupChatModal = ({ children }) => {
         },
       };
 
-      const users = await fetch(
-        `${apiUrl}/api/user?search=${search}`,
-        config
-      );
+      const users = await fetch(`${apiUrl}/api/user?search=${search}`, config);
       const data = await users.json();
       setLoading(false);
       setSearchResult(data.data);
@@ -161,7 +158,9 @@ const GroupChatModal = ({ children }) => {
                 <UserBadgeItem
                   key={u._id}
                   user={u}
+                  admin={user}
                   handleFunction={() => handleDelete(u)}
+                  updategroup={false}
                 />
               ))}
             </Box>
