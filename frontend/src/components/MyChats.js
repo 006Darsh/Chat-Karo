@@ -115,22 +115,24 @@ const MyChats = ({ fetchAgain }) => {
                     !chat.isGroupChat && getSenderPic(loggedUser, chat.users)
                   }
                 />
-                <Text>
-                  {!chat.isGroupChat
-                    ? getSender(loggedUser, chat.users)
-                    : chat.chatName}
-                </Text>
-                {chat.latestMessage ? (
-                  <Text color={selectedChat === chat ? "white" : "GrayText"}>
+                <Box>
+                  <Text>
                     {!chat.isGroupChat
-                      ? chat.latestMessage.content
-                      : chat.latestMessage.sender._id === loggedUser._id
-                      ? `You: ${chat.latestMessage.content}`
-                      : `${chat.latestMessage.sender.name}: ${chat.latestMessage.content}`}
+                      ? getSender(loggedUser, chat.users)
+                      : chat.chatName}
                   </Text>
-                ) : (
-                  <></>
-                )}
+                  {chat.latestMessage ? (
+                    <Text color={selectedChat === chat ? "white" : "GrayText"}>
+                      {!chat.isGroupChat
+                        ? chat.latestMessage.content
+                        : chat.latestMessage.sender._id === loggedUser._id
+                        ? `You: ${chat.latestMessage.content}`
+                        : `${chat.latestMessage.sender.name}: ${chat.latestMessage.content}`}
+                    </Text>
+                  ) : (
+                    <></>
+                  )}
+                </Box>
               </Box>
             ))}
           </Stack>
