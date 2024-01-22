@@ -120,6 +120,17 @@ const MyChats = ({ fetchAgain }) => {
                     ? getSender(loggedUser, chat.users)
                     : chat.chatName}
                 </Text>
+                {chat.latestMessage ? (
+                  <Text color={selectedChat === chat ? "white" : "GrayText"}>
+                    {!chat.isGroupChat
+                      ? chat.latestMessage.content
+                      : chat.latestMessage.sender._id === loggedUser._id
+                      ? `You: ${chat.latestMessage.content}`
+                      : `${chat.latestMessage.sender.name}: ${chat.latestMessage.content}`}
+                  </Text>
+                ) : (
+                  <></>
+                )}
               </Box>
             ))}
           </Stack>

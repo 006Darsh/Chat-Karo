@@ -6,7 +6,7 @@
 -->email verification
 -->password regulations
 -->Add media sending function
-
+-->Add leave group for the member of the group
 
 -->Advanced
 -->add tick marks on sent,received,and seen
