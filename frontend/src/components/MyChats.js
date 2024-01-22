@@ -104,6 +104,7 @@ const MyChats = ({ fetchAgain }) => {
               >
                 <Avatar
                   mr={2}
+                  mt={2}
                   size={"sm"}
                   cursor={"pointer"}
                   name={
