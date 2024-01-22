@@ -104,7 +104,7 @@ const MyChats = ({ fetchAgain }) => {
               >
                 <Avatar
                   mr={2}
-                  mt={2}
+                  mt={chat.latestMessage ? 2 : 0}
                   size={"sm"}
                   cursor={"pointer"}
                   name={
@@ -117,7 +117,7 @@ const MyChats = ({ fetchAgain }) => {
                   }
                 />
                 <Box>
-                  <Text>
+                  <Text mt={chat.latestMessage ? 0 : 2}>
                     {!chat.isGroupChat
                       ? getSender(loggedUser, chat.users)
                       : chat.chatName}
